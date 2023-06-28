@@ -3,6 +3,7 @@ package br.com.alura.Screenmatch.controller;
 import br.com.alura.Screenmatch.domain.filme.DadosCadastroFilme;
 import br.com.alura.Screenmatch.domain.filme.Filme;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +21,17 @@ public class FilmeController {
 
     private List<Filme> filmes = new ArrayList<>();
 
-    @GetMapping
+    @GetMapping("/formulario")
     public String carregaPaginaFormulario() {
         //Objetivo deste método é abrir o formulário no navegador
 
         return "filmes/formulario";
+    }
+
+    @GetMapping
+    public String carregaPaginaListagem(Model model) {
+        model.addAttribute("lista", filmes);
+        return "filmes/listagem";
     }
 
     @PostMapping
