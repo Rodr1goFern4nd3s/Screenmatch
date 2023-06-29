@@ -30,6 +30,8 @@ public class FilmeController {
 
     @GetMapping
     public String carregaPaginaListagem(Model model) {
+        //Toda vez que for navegar para a página de lista, temos que adicionar a variável lista no Model
+
         model.addAttribute("lista", filmes);
         return "filmes/listagem";
     }
@@ -41,6 +43,6 @@ public class FilmeController {
         var filme = new Filme(dados);
         filmes.add(filme);
         System.out.println(filmes);
-        return "filmes/formulario";
+        return "redirect:/filmes";
     }
 }
