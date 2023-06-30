@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns: th="http://thymeleaf.org">
+<html lang="en"
+      xmlns: th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}"> <!--Aqui referenciamos o arquivo template.html, como se fosse uma herança-->
 <head>
-    <meta charset="UTF-8">
     <title>Lista de filmes</title>
 </head>
 <body>
-  <header>
-    <h1>Lista de filmes</h1>
-  </header>
-  <main>
+
+<div layout:fragment="conteudo">
+
+  <h1>Lista de filmes</h1>
+  <a href="/filmes/formulario">Novo</a>
     <table>
       <thead>
         <tr>
@@ -27,9 +30,8 @@
         </tr>
       </tbody>
     </table>
-  </main>
-  <footer>
 
-  </footer>
+</div>
+
 </body>
 </html>
