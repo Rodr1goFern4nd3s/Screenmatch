@@ -2,6 +2,8 @@ package br.com.alura.Screenmatch.controller;
 
 import br.com.alura.Screenmatch.domain.filme.DadosCadastroFilme;
 import br.com.alura.Screenmatch.domain.filme.Filme;
+import br.com.alura.Screenmatch.domain.filme.FilmeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,8 @@ public class FilmeController {
     ela vai receber requisições http
      */
 
-    private List<Filme> filmes = new ArrayList<>();
+    @Autowired
+    private FilmeRepository repository;
 
     @GetMapping("/formulario")
     public String carregaPaginaFormulario() {
@@ -32,7 +35,7 @@ public class FilmeController {
     public String carregaPaginaListagem(Model model) {
         //Toda vez que for navegar para a página de lista, temos que adicionar a variável lista no Model
 
-        model.addAttribute("lista", filmes);
+        model.addAttribute("lista", repository.findAll());
         return "filmes/listagem";
     }
 
@@ -41,8 +44,8 @@ public class FilmeController {
     //Este método recebe os valores enviados nos campos do formulário
 
         var filme = new Filme(dados);
-        filmes.add(filme);
-        System.out.println(filmes);
+        repository.save(filme);
+        //System.out.println(filmes);
         return "redirect:/filmes";
     }
 }
