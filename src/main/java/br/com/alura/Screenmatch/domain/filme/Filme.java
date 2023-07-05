@@ -10,7 +10,9 @@ public class Filme {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @Column(name = "duracao_em_minutos")
     private Integer duracaoEmMinutos;
+    @Column(name = "ano_lancamento")
     private Integer anoDeLancamento;
     private String genero;
 
@@ -19,6 +21,10 @@ public class Filme {
         this.duracaoEmMinutos = dados.duracaoEmMinutos();
         this.anoDeLancamento = dados.anoLancamento();
         this.genero = dados.genero();
+    }
+
+    public Filme() {
+
     }
 
     @Override
