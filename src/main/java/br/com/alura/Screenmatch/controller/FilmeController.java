@@ -26,9 +26,11 @@ public class FilmeController {
     private FilmeRepository repository;
 
     @GetMapping("/formulario")
-    public String carregaPaginaFormulario() {
-        //Objetivo deste método é abrir o formulário no navegador
-
+    public String carregaPaginaFormulario(Long id, Model model) { //Objetivo deste método é abrir o formulário no navegador
+        if(id != null) {
+            var filme = repository.getReferenceById(id);
+            model.addAttribute("informacaoFilme", filme);
+        }
         return "filmes/formulario";
     }
 
@@ -51,8 +53,10 @@ public class FilmeController {
     }
 
     @DeleteMapping
-    public String removeFilme() {
-        System.out.println("Filme excluído");
+    public String removeFilme(Long id) {
+        //System.out.println("Filme excluído");
+
+        repository.deleteById(id);
         return "redirect:/filmes";
     }
 }

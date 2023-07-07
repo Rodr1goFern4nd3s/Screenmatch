@@ -14,33 +14,33 @@
         <form action="/filmes" method="post">
             <div>
                 <label for="nome">Nome:</label>
-                <input id="nome" name="nome">
+                <input id="nome" name="nome" th:value="${informacaoFilme.nome}">
             </div>
 
             <br>
 
             <div>
                 <label for="duracao">Duração (em minutos):</label>
-                <input id="duracao" name="duracaoEmMinutos">
+                <input id="duracao" name="duracaoEmMinutos" th:value="${informacaoFilme.duracaoEmMinutos}">
             </div>
 
             <br>
 
             <div>
                 <label for="anoLancamento">Ano de lancamento:</label>
-                <input id="anoLancamento" name="anoLancamento">
+                <input id="anoLancamento" name="anoLancamento" th:value="${informacaoFilme.anoDeLancamento}">
             </div>
 
             <br>
 
             <div>
                 <label for="genero">Gênero:</label>
-                <input id="genero" name="genero">
+                <input id="genero" name="genero" th:value="${informacaoFilme.genero}">
             </div>
 
             <br>
 
-            <button type="submit">Enviar</button>
+            <button type="submit">Cadastrar</button>
         </form>
 </div>
 
