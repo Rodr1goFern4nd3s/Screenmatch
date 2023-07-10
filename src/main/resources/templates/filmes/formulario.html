@@ -12,30 +12,33 @@
 
     <h1>Cadastro de Filme</h1>
         <form action="/filmes" method="post">
+            <input type="hidden" name="_method" value="put" th:if="${informacaoFilme != null}">
+            <input type="hidden" name="id" th:value="${informacaoFilme?.id}">
+
             <div>
                 <label for="nome">Nome:</label>
-                <input id="nome" name="nome" th:value="${informacaoFilme.nome}">
+                <input id="nome" name="nome" th:value="${informacaoFilme?.nome}">
             </div>
 
             <br>
 
             <div>
                 <label for="duracao">Duração (em minutos):</label>
-                <input id="duracao" name="duracaoEmMinutos" th:value="${informacaoFilme.duracaoEmMinutos}">
+                <input id="duracao" name="duracaoEmMinutos" th:value="${informacaoFilme?.duracaoEmMinutos}">
             </div>
 
             <br>
 
             <div>
                 <label for="anoLancamento">Ano de lancamento:</label>
-                <input id="anoLancamento" name="anoLancamento" th:value="${informacaoFilme.anoDeLancamento}">
+                <input id="anoLancamento" name="anoLancamento" th:value="${informacaoFilme?.anoDeLancamento}">
             </div>
 
             <br>
 
             <div>
                 <label for="genero">Gênero:</label>
-                <input id="genero" name="genero" th:value="${informacaoFilme.genero}">
+                <input id="genero" name="genero" th:value="${informacaoFilme?.genero}">
             </div>
 
             <br>

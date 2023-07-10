@@ -1,15 +1,14 @@
 package br.com.alura.Screenmatch.controller;
 
+import br.com.alura.Screenmatch.domain.filme.DadosAlteracaoFilme;
 import br.com.alura.Screenmatch.domain.filme.DadosCadastroFilme;
 import br.com.alura.Screenmatch.domain.filme.Filme;
 import br.com.alura.Screenmatch.domain.filme.FilmeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +42,7 @@ public class FilmeController {
     }
 
     @PostMapping
+    @Transactional
     public String cadastraFilme(DadosCadastroFilme dados) {
     //Este método recebe os valores enviados nos campos do formulário
 
@@ -52,7 +52,17 @@ public class FilmeController {
         return "redirect:/filmes";
     }
 
+    @PutMapping
+    @Transactional
+    public String alteraFilme(DadosAlteracaoFilme dados) {
+        //Este método recebe os valores enviados do link Editar para atualizações
+        var filme = repository.getReferenceById(dados.id()); //Aqui carrega o filme desejado, para ser editado
+        filme.atualizaDados(dados);
+        return "redirect:/filmes";
+    }
+
     @DeleteMapping
+    @Transactional
     public String removeFilme(Long id) {
         //System.out.println("Filme excluído");
 
